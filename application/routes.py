@@ -1,12 +1,16 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 from flask_login.utils import logout_user
 from werkzeug.security import generate_password_hash
-from application.models import NotificationHistory, User
+from application.models import CSVExtract, NotificationHistory, User
 from application.forms import RegistrationForm, LoginForm, NotifyTemplate
 from application import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 import smtplib
 import os
+import csv
+import io
+from werkzeug.utils import secure_filename
+from io import TextIOWrapper
 WHATSAPP_FROM = os.getenv("WHATSAPP_FROM")
 WHATSAPP_TO = os.getenv("WHATSAPP_TO")
 SMS_TO = os.getenv("SMS_TO")
@@ -153,3 +157,53 @@ def notification_history_id(notif_id):
     notif = NotificationHistory.query.get(notif_id)
     return render_template('history_id.html', notif = notif)
 
+
+@app.route('/conditional_triggers')
+def conditional_triggers():
+    return render_template('conditional.html')
+
+uploads_dir = os.path.join(app.instance_path, 'uploads/')
+
+
+@app.route("/upload_csv", methods=['POST'])
+def upload_csv():
+    uploaded_file = request.files['file']
+    stream = io.StringIO(
+        uploaded_file.stream.read().decode("UTF8"), newline=None)
+    csv_input = csv.reader(stream)
+    for row in csv_input:
+        data = CSVExtract(
+            type = row[0],
+            frequency = row[1],
+            event_date = row[2],
+            due_data = row[3],
+            employee = row[4],
+            employee_details = row[5],
+            event_code = row[6],
+            action_perform = row[7],
+            notification_controller = row[8],
+            notification_event = row[9],
+            user_id = current_user.id,
+        )
+        db.session.add(data)
+        db.session.commit()
+
+
+    # Uploading the file 
+    uploaded_file.save(os.path.join(
+        uploads_dir, secure_filename(uploaded_file.filename)))
+
+    return redirect(url_for('home'))
+
+@app.route('/user_table')
+def usertable():
+    data = current_user.data
+    return render_template('usertable.html',data=data)
+
+@app.route('/clear')
+def cleartable():
+    data = CSVExtract.query.filter_by(user_id=current_user.id).all()
+    for row in data:
+        db.session.delete(row)
+        db.session.commit() 
+    return redirect(url_for('usertable'))

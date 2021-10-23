@@ -1,0 +1,235 @@
+{% extends 'basic.html'%}
+{%block title%}Event-based triggers {%endblock%}
+{%block style%}
+<style>
+    .subideabody {
+        font-family: 'Poppins';
+        background-color: #f8f8f8;
+    }
+
+    .sform {
+        width: 80%;
+    }
+
+
+    .bell {
+        position: fixed;
+        top: 1vw;
+        right: 1vw;
+    }
+
+    #form_button {
+        background-color: #109CF1;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        padding-right: 25px;
+        padding-left: 25px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-family: 'Poppins';
+    }
+
+    input[type=text] {
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+    }
+
+    input[type=textarea] {
+        outline: none;
+    }
+</style>
+{%endblock%}
+{% block body %}
+
+<body>
+    <div class="bg-blue-50 flex">
+        {% include "navbar.html" %}
+        <div class="flex">
+            <div>
+                <style>
+                    .form-input {
+                        border: none;
+                        background-color: transparent;
+                        width: 580px;
+                        outline: none;
+                    }
+                </style>
+                <div class="subideabody" style="font-family: 'Roboto';">
+                    <div class=" bg-blue-50 flex  ">
+
+                        <div class="mx-4 flex-grow">
+
+                            <br>
+                            <div class=" flex flex-wrap ">
+                                <div class=" bg-white max-w-4xl rounded-lg w-screen shadow-md">
+                                    <div>
+                                        <div class="py-3 pl-6 font-medium text-xl border-b-2 font-semibold">Conditional
+                                            Triggers </div>
+                                        <br>
+
+
+                                        
+
+                                        <br>
+                                        <br>
+                                        <div class="container">
+                                        <div class="card mb-3" style="width: 100%;">
+                                            <div class="row g-0">
+                                              
+                                              <div class="col-md-8">
+                                                <div class="card-body">
+                                                  <h5 class="card-title">Card title</h5>
+                                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                <div class=" flex justify-center w-full min-w-x">
+                                                    <div class=" py-4 px-10">
+                                                        <div class=" w-40 h-40">
+                                                            <div style="margin: 50px 58px;" class=" absolute">
+                                                                <svg width="46" height="44" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                        fill="#334D6E" />
+                                                                </svg>
+                                                            </div>
+                                                            <div id="level-value" style="margin: 100px 65px;" class="absolute font-medium text-xl ">NaN</div>
+                                                            <canvas id="level-pie"></canvas>
+                                                        </div>
+                                                        <div class=" my-2">
+                                                            <div class=" text-gray-600 text-xl font-medium text-center">Notifications</div>
+                                                            <div class=" text-gray-600 text-center whitespace-nowrap">{{notif}} notifications sent</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div></div>
+                                        <div class="  w-80 border-gray-400 rounded mx-4 m-{5}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+{%endblock%}
+{% block script %}
+<script>
+    const btn = document.querySelector(".mobile");
+    const sidebar = document.querySelector(".navbar");
+    const arrow = document.querySelector(".side");
+    const middle = document.querySelector(".Middle");
+    // const alcher = document.querySelector(".Alcher");
+    const ak = document.querySelector(".ak");
+
+    if (screen.width < 672) {
+        alert('Less than 960');
+        ak.classList.add("hidden")
+
+    }
+
+    // alcher.addEventListener("click", () => {
+    //     sidebar.classList.toggle("-translate-x-full"),
+    //         middle.classList.add("sm:mx-96"),
+    //         btn.classList.add("invisible")
+    // });
+    arrow.addEventListener("click", () => {
+        middle.classList.remove("sm:mx-96")
+        sidebar.classList.toggle("-translate-x-full"),
+            btn.classList.remove("invisible")
+    })
+
+
+
+    const levelPoints = [56, 14];
+        document.getElementById('level-value').innerText = '0'+levelPoints[0]
+    // class initialization(myChat)
+    var levelChart = new Chart(document.getElementById('level-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: levelPoints,
+                backgroundColor: [
+                    'rgba(232, 107, 115, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+
+
+    const tasksCompletedPoints = [23, 5];
+    document.getElementById('tasks-completed-value').innerText = tasksCompletedPoints[0]
+
+    // class initialization(myChat)
+    var tasksCompletedChart = new Chart(document.getElementById('tasks-completed-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: tasksCompletedPoints,
+                backgroundColor: [
+                    'rgba(0, 201, 92, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+
+
+
+    const referralsPoints = [56, 3];
+    document.getElementById('referrals-value').innerText = referralsPoints[0]
+
+    // class initialization(myChat)
+    var referralsChart = new Chart(document.getElementById('referrals-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: referralsPoints,
+                backgroundColor: [
+                    'rgba(255, 161, 51, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+</script>
+{% endblock %}

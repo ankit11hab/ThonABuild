@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20),nullable=False,default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     history = db.relationship('NotificationHistory',backref='author',lazy=True)
+    data = db.relationship('CSVExtract',backref='author',lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}' , '{self.image_file}')"
@@ -35,3 +36,20 @@ class NotificationHistory(db.Model, UserMixin):
     def __repr__(self):
         return f"NotificationHistory('{self.id}')"
 
+
+class CSVExtract(db.Model,UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(500), nullable=False)
+    frequency = db.Column(db.String(500), nullable=False)
+    event_date = db.Column(db.String(500), nullable=False)
+    due_data = db.Column(db.String(500), nullable=False)
+    employee = db.Column(db.String(500), nullable=False)
+    employee_details = db.Column(db.String(1000), nullable=False)
+    event_code = db.Column(db.String(500), nullable=False)
+    action_perform = db.Column(db.String(500), nullable=False)
+    notification_controller = db.Column(db.String(500), nullable=False)
+    notification_event = db.Column(db.String(1000), nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
+
+    def __repr__(self):
+        return f"CSV('{self.user_id}', '{self.type}' , '{self.event_date}')"
