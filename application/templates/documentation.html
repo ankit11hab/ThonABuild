@@ -1,0 +1,67 @@
+
+{% extends 'basic.html'%}
+{%block title%}Home {%endblock%}
+{% block body %}
+<!-- <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+</script> -->
+<body>
+    <div class="bg-blue-50 flex">
+        {% include "navbar.html" %}
+            <div class="flex">
+                <div style = "width:1000px;height:4355px;overflow: hidden;">
+                    <iframe frameborder="0" src="../static/problem.pdf#scrollbar=0&toolbar=0&navpanes=0&view=FitH" width="1050px" height="4400px" style = "transform: translate(-25px,-5px);"></iframe>
+                    <!-- <iframe src="http://www.slideshare.net/slideshow/embed_code/key/fZHbg6xSXHL9Ua?startSlide=32" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> -->
+                    <!-- <object data="../static/problem.pdf" type="application/pdf" width="780px" height="800px">
+                        <embed src="../static/problem.pdf" type="application/pdf" />
+                    </object> -->
+                    <canvas id = "pdf_canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{%endblock%}
+{% block script %}
+
+<!-- <script>
+    
+    pdfjsLib.getDocument('../static/problem.pdf').promise.then(doc => {
+        
+        doc.getPage(1).then(page=>{
+            var pdf_canvas = document.getElementById('pdf_canvas')
+            var context = pdf_canvas.getContext('2d')
+
+            var viewport = page.getViewport(1)
+            pdf_canvas.width = viewport.width+200;
+            pdf_canvas.height = viewport.height;
+
+            page.render({
+                canvasContext: context,
+                viewport: viewport
+            })
+        })
+    })
+</script> -->
+<script>
+    var iframe = document.getElementsByTagName('iframe')[0];
+    iframe.style.background = 'white';
+    iframe.contentWindow.document.body.style.backgroundColor = 'white';
+    const btn = document.querySelector(".mobile");
+    const sidebar = document.querySelector(".navbar");
+    const arrow = document.querySelector(".side");
+    const middle = document.querySelector(".Middle");
+    // const alcher = document.querySelector(".Alcher");
+    const ak = document.querySelector(".ak");
+
+    if (screen.width < 672) {
+        alert('Less than 960');
+        ak.classList.add("hidden")
+
+    }
+
+    
+</script>
+
+{% endblock %}
