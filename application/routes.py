@@ -88,6 +88,13 @@ def event_based():
     form = NotifyTemplate()
     if form.validate_on_submit():
         template=form.template.data
+        if(request.files['image']):
+            uploaded_img = request.files['image']
+            cloudinary.config(cloud_name="dmcbeyvr4", api_key="641921374166998",
+                              api_secret="q4zM2BjtuVSux3hKkXpG_SqqcnY")
+            upload_result = cloudinary.uploader.upload(
+                uploaded_img, folder="buildathon/")
+            print(upload_result['secure_url'])
         from twilio.rest import Client 
         notif = NotificationHistory(user_id = current_user.id,type='Event Based',email=form.sendmail.data, sms=form.sendsms.data,whatsapp=form.sendwhatsappmsg.data,message_body = template)
         db.session.add(notif)
@@ -103,7 +110,12 @@ def event_based():
                 auth_token = AUTH_TOKEN
                 client = Client(account_sid, auth_token) 
                 if form.sendwhatsappmsg.data:
-                    whatsappmessage = client.messages.create(from_='whatsapp:'+WHATSAPP_FROM, body= template, to='whatsapp:'+mobile_to) 
+                    if(request.files['image']):
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                    else:
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
                 if form.sendsms.data:
                     message = client.messages.create(
                      body=template,
@@ -125,7 +137,7 @@ def event_based():
 def score_based():
     form = NotifyTemplate()
     if form.validate_on_submit():
-        template = form.template.data
+        template=form.template.data
         if(request.files['image']):
             uploaded_img = request.files['image']
             cloudinary.config(cloud_name="dmcbeyvr4", api_key="641921374166998",
@@ -133,35 +145,40 @@ def score_based():
             upload_result = cloudinary.uploader.upload(
                 uploaded_img, folder="buildathon/")
             print(upload_result['secure_url'])
-
-        from twilio.rest import Client
-        notif = NotificationHistory(user_id=current_user.id, type='Score Based', email=form.sendmail.data,
-                                    sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data, message_body=template)
+        from twilio.rest import Client 
+        notif = NotificationHistory(user_id = current_user.id,type='Score Based',email=form.sendmail.data, sms=form.sendsms.data,whatsapp=form.sendwhatsappmsg.data,message_body = template)
         db.session.add(notif)
         db.session.commit()
-        account_sid = ACCOUNT_SID
-        auth_token = AUTH_TOKEN
-        client = Client(account_sid, auth_token)
-        if form.sendwhatsappmsg.data:
-            if(request.files['image']):
-                whatsappmessage = client.messages.create(
-                    from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+WHATSAPP_TO)
-            else:
-                whatsappmessage = client.messages.create(
-                    from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+WHATSAPP_TO)
-        if form.sendsms.data:
-            message = client.messages.create(
-                body=template,
-                messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
-                to=SMS_TO
-            )
-
-        if form.sendmail.data:
-            server = smtplib.SMTP('smtp.gmail.com', 587)
-            server.starttls()
-            server.login(EMAIL_FROM, PASSWORD)
-            server.sendmail(EMAIL_FROM, EMAIL_TO, template)
-            server.quit()
+        data = current_user.data
+        for item in data:
+            if item.type=='Score-Based' and item.event_code==form.score.data+' ':
+                txt = item.employee_details
+                email_to = txt.split("; ")[1]
+                mobile_to = txt.split("; ")[2]
+                print(email_to)
+                """ account_sid = ACCOUNT_SID
+                auth_token = AUTH_TOKEN
+                client = Client(account_sid, auth_token) 
+                if form.sendwhatsappmsg.data:
+                    if(request.files['image']):
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                    else:
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
+                if form.sendsms.data:
+                    message = client.messages.create(
+                     body=template,
+                     messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
+                     to=mobile_to
+                    )
+ 
+                if form.sendmail.data:
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()
+                    server.login(EMAIL_FROM,PASSWORD)
+                    server.sendmail(EMAIL_FROM, email_to, template)
+                    server.quit() """
 
         return redirect(url_for('home'))
     return render_template('submissions/score_form.html', form=form) 
@@ -171,6 +188,13 @@ def activity_based():
     form = NotifyTemplate()
     if form.validate_on_submit():
         template=form.template.data
+        if(request.files['image']):
+            uploaded_img = request.files['image']
+            cloudinary.config(cloud_name="dmcbeyvr4", api_key="641921374166998",
+                              api_secret="q4zM2BjtuVSux3hKkXpG_SqqcnY")
+            upload_result = cloudinary.uploader.upload(
+                uploaded_img, folder="buildathon/")
+            print(upload_result['secure_url'])
         from twilio.rest import Client 
         notif = NotificationHistory(user_id = current_user.id,type='Activity Based',email=form.sendmail.data, sms=form.sendsms.data,whatsapp=form.sendwhatsappmsg.data,message_body = template)
         db.session.add(notif)
@@ -186,7 +210,12 @@ def activity_based():
                 auth_token = AUTH_TOKEN
                 client = Client(account_sid, auth_token) 
                 if form.sendwhatsappmsg.data:
-                    whatsappmessage = client.messages.create(from_='whatsapp:'+WHATSAPP_FROM, body= template, to='whatsapp:'+mobile_to) 
+                    if(request.files['image']):
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                    else:
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
                 if form.sendsms.data:
                     message = client.messages.create(
                      body=template,
