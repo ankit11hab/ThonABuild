@@ -75,44 +75,218 @@
                                         <br>
 
 
-                                        
+
 
                                         <br>
                                         <br>
                                         <div class="container">
-                                        <div class="card mb-3" style="width: 100%;">
-                                            <div class="row g-0">
-                                              
-                                              <div class="col-md-8">
-                                                <div class="card-body">
-                                                  <h5 class="card-title">Card title</h5>
-                                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div>
-                                              </div>
-                                              <div class="col-md-4">
-                                                <div class=" flex justify-center w-full min-w-x">
-                                                    <div class=" py-4 px-10">
-                                                        <div class=" w-40 h-40">
-                                                            <div style="margin: 50px 58px;" class=" absolute">
-                                                                <svg width="46" height="44" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
-                                                                        fill="#334D6E" />
-                                                                </svg>
-                                                            </div>
-                                                            <div id="level-value" style="margin: 100px 65px;" class="absolute font-medium text-xl ">NaN</div>
-                                                            <canvas id="level-pie"></canvas>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Score based</b></h5><br>
+                                                            <p class="card-text">You will have the option to define
+                                                                scores at which notification will be triggered. Each
+                                                                module will have multiple unique factors for which the
+                                                                triggers have to be defined.</p><br>
+                                                            <a href = "{{ url_for('score_based') }}"><button class="btn btn-primary">Continue</button></a>
                                                         </div>
-                                                        <div class=" my-2">
-                                                            <div class=" text-gray-600 text-xl font-medium text-center">Notifications</div>
-                                                            <div class=" text-gray-600 text-center whitespace-nowrap">{{notif}} notifications sent</div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="score" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="score-pie"></canvas>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                              </div>
                                             </div>
-                                          </div></div>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Event based</b></h5><br>
+                                                            <p class="card-text">Organisation wide event i. Example:
+                                                                Annual meet – Trigger 2 days before the event • Process
+                                                                events i. Configure custom notifications for
+                                                                organisation process events example: Performance rating
+                                                                closing date</p><br>
+                                                                <a href = "{{ url_for('event_based') }}"><button class="btn btn-primary">Continue</button></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="event" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="event-pie"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Activity based</b></h5><br>
+                                                            <p class="card-text">You can set frequency that they wish to see the employee on the app. For example – if the frequency is set as daily – then system will send trigger at pre define time</p><br>
+                                                            <a href = "{{ url_for('activity_based') }}"><button class="btn btn-primary">Continue</button></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="activity" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="activity-pie"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Time based</b></h5><br>
+                                                            <p class="card-text">a) Timeline related – for factors in each module (dates as timeline)
+                                                                b) Daily activity update timeline (example before 7 pm)
+                                                                c) Assessment
+                                                                • Admin can set up the timeline when the trigger has to be sent – example: 1 week 
+                                                                before end date, everyday for last 4 days, 2 hrs before the end time of assessment </p><br>
+                                                            <button class="btn btn-primary">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="level-value" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="level-pie"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Participation based</b></h5><br>
+                                                            <p class="card-text">Admin launches a new activity – example poll, survey; then the admin will be able to 
+                                                                configure trigger for participating in the activity</p><br>
+                                                            <button class="btn btn-primary">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="level-value" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="level-pie"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-3" style="width: 100%;">
+                                                <div class="row g-0">
+
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><b>Role based</b></h5><br>
+                                                            <p class="card-text">Admin can set certain triggers based on roles
+                                                            </p><br>
+                                                            <button class="btn btn-primary">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class=" flex justify-center w-full min-w-x">
+                                                            <div class=" py-4 px-10">
+                                                                <div class=" w-40 h-40">
+                                                                    <div style="margin: 50px 58px;" class=" absolute">
+                                                                        <svg width="46" height="44" viewBox="0 0 37 36"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M34.3234 4.34916H28.9342V2.59267C28.9342 2.12682 28.7449 1.68005 28.408 1.35064C28.0711 1.02124 27.6142 0.836182 27.1378 0.836182H9.17369C8.69725 0.836182 8.24033 1.02124 7.90344 1.35064C7.56654 1.68005 7.37728 2.12682 7.37728 2.59267V4.34916H1.98806C1.51162 4.34916 1.0547 4.53421 0.717806 4.86362C0.380914 5.19303 0.19165 5.63979 0.19165 6.10564V11.3751C0.19165 18.9456 3.42518 23.5124 8.85033 23.6705C9.6419 25.0089 10.7249 26.1606 12.0226 27.0439C13.3203 27.9273 14.8009 28.5206 16.3593 28.7819V32.453H12.7665V35.9659H23.5449V32.453H19.9521V28.7819C21.5106 28.5206 22.9911 27.9273 24.2888 27.0439C25.5865 26.1606 26.6695 25.0089 27.4611 23.6705C32.8503 23.4949 36.1198 18.928 36.1198 11.3751V6.10564C36.1198 5.63979 35.9305 5.19303 35.5936 4.86362C35.2568 4.53421 34.7998 4.34916 34.3234 4.34916ZM3.78447 11.3751V7.86213H7.37728V19.8589C4.17967 18.5416 3.78447 13.6585 3.78447 11.3751ZM28.9342 19.8589V7.86213H32.527V11.3751C32.527 13.6585 32.1318 18.5416 28.9342 19.8589Z"
+                                                                                fill="#334D6E" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div id="level-value" style="margin: 100px 65px;"
+                                                                        class="absolute font-medium text-xl ">NaN</div>
+                                                                    <canvas id="level-pie"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                         <div class="  w-80 border-gray-400 rounded mx-4 m-{5}"></div>
                                     </div>
                                 </div>
@@ -155,16 +329,81 @@
 
 
 
-    const levelPoints = [56, 14];
-        document.getElementById('level-value').innerText = '0'+levelPoints[0]
+    const levelPoints = [{{data.scoreno}}, 14];
+    if ({{data.scoreno}}<10)
+        document.getElementById('score').innerText = '00' + levelPoints[0];
+    else if ({{data.scoreno}}<100)
+        document.getElementById('score').innerText = '0' + levelPoints[0];
+    else
+        document.getElementById('score').innerText = levelPoints[0];
     // class initialization(myChat)
-    var levelChart = new Chart(document.getElementById('level-pie').getContext('2d'), {
+    var levelChart = new Chart(document.getElementById('score-pie').getContext('2d'), {
         type: 'doughnut',
         data: {
             datasets: [{
                 data: levelPoints,
                 backgroundColor: [
-                    'rgba(232, 107, 115, 1)',
+                'rgba(255, 161, 51, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+
+    const eventPoints = [{{data.eventno}}, 14];
+    if ({{data.eventno}}<10)
+    document.getElementById('event').innerText = '00' + eventPoints[0]
+    else if ({{data.eventno}}<100)
+    document.getElementById('event').innerText = '0' + eventPoints[0]
+    else
+    document.getElementById('event').innerText = eventPoints[0]
+    // class initialization(myChat)
+    var levelChart = new Chart(document.getElementById('event-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: eventPoints,
+                backgroundColor: [
+                'rgba(232, 107, 115, 1)',
+                    'rgba(243, 246, 248, 1)'
+                /* 'rgba(0, 201, 92, 1)',
+                    'rgba(243, 246, 248, 1)' */
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+
+    const activityPoints = [{{data.activityno}}, 14];
+    if ({{data.activityno}}<10)
+    document.getElementById('activity').innerText = '00' + activityPoints[0]
+    else if ({{data.activityno}}<100)
+    document.getElementById('activity').innerText = '0' + activityPoints[0]
+    else
+    document.getElementById('activity').innerText = activityPoints[0]
+    // class initialization(myChat)
+    var levelChart = new Chart(document.getElementById('activity-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: activityPoints,
+                backgroundColor: [
+                'rgba(0, 201, 92, 1)',
                     'rgba(243, 246, 248, 1)'
                 ],
                 borderWidth: 0,

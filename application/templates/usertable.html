@@ -110,7 +110,7 @@
                                         </table>
 
                                         <div>
-                                            <button class = "btn btn-primary">Add a row</button>
+                                            <a href = "{{ url_for('addrow') }}"><button class = "btn btn-primary">Add a row</button></a>
                                             {% if data %}
                                             <a href = "{{ url_for('cleartable') }}"><button class = "btn btn-danger">Clear all</button></a>
                                             {% endif %}

@@ -7,7 +7,11 @@
         <div class=" bg-gray-100 p-4 mx-5 my-3 rounded-md shadow-md flex justify-between">
             <div>
                 <div class=" mb-2">
-                    <span class="font-medium text-xl">Updated</span>
+                    {% if data %}
+                        <span class="font-medium text-xl">Updated</span>
+                    {% else %}
+                        <span class="font-medium text-xl">Upload data</span>   
+                    {% endif %}
                 </div>
                 <p class=" text-justify mr-4">
                     Have a look at the statistics of the users as extracted from the csv file uploaded by you.<br>
@@ -20,10 +24,18 @@
                     <div class="text-gray-500 text-xs"></div>
                     <div class="text-gray-500 font-medium text-base"></div>
                 </div>
-                <a href = "{{ url_for('usertable') }}"><button
+                {% if data %}
+                    <a href = "{{ url_for('usertable') }}"><button
                     class=" bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base">
                     Tabular data
-                </button></a>
+                    </button></a>
+                {% else %}
+                <a href = "{{ url_for('data') }}"><button
+                    class=" bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base">
+                    Upload data
+                </button></a> 
+                {% endif %}
+                
             </div>
         </div>
         
