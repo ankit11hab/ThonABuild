@@ -22,12 +22,8 @@
                             {{ form.hidden_tag() }}
                             <div class="sform">
                                 <form action="#" method="post" id="idea_form" width:50%>
-                                    <select style = "color:#999;outline:none" class="message m-5 text-m border-b-2 border-gray-60" id="time" name="time">
-                                        <option value="immediately">Immediately</option>
-                                        <option value="daily">Daily</option>
-                                        <option value="weekly">Weekly</option>
-                                        <option value="monthly">Monthly</option>
-                                    </select>
+                                    
+                                    
     
                                     <div class="message m-5 border-b-2 my-8 text-m border-gray-60">
                                         <label for="template"></label>
@@ -42,6 +38,14 @@
                                     <div class="message m-5 my-8 text-m border-gray-60">
                                         <label for="template">Attach Image (Image will go only in whatsapp)</label>
                                         <div>{{ form.image(class="form-control") }}</div>
+                                    </div>
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        {{ form.frequency(class="form-control") }}
+                                    </div>
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        {{ form.scheduled_date(class="form-control", type='datetime-local') }}
                                     </div>
                                     
     

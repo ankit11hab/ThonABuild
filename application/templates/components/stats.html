@@ -1,6 +1,6 @@
 <div class=" flex flex-col md:flex-row my-2 md:space-x-4" style = "margin: 25px;">
     <div class=" bg-white rounded-md shadow-md-1 my-2">
-        <div class="py-3 pl-6 font-medium text-lg border-b-2">Level</div>
+        <div class="py-3 pl-6 font-medium text-lg border-b-2">Overview</div>
         <div class=" flex justify-center w-full min-w-x">
             <div class=" py-4 px-10">
                 <div class=" w-40 h-40">
@@ -21,35 +21,11 @@
             </div>
         </div>
     </div>
-    <div class=" bg-white rounded-md shadow-md-1 my-2 ml-2 w-full">
-        <div class="py-3 pl-6 font-medium text-lg border-b-2">My Progress</div>
-        <div class=" flex justify-around p-4">
-            <div class=" flex flex-col justify-center">
-                <div class=" w-40 h-40 flex">
-                    <div id="tasks-completed-value" style="font-size: 2.3em; margin: 59px 59px;"
-                        class="absolute font-medium">NaN</div>
-                    <canvas id="tasks-completed-pie"></canvas>
-                </div>
-                <div class=" my-2">
-                    <div class=" text-gray-600 text-xl font-medium text-center">Tasks completed
-                    </div>
-                    {% for tasks in tasks_done %}
-                        <div class=" text-gray-600 text-center ">{{ tasks.points }} points earned</div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div>
-                <div class=" w-40 h-40">
-                    <div id="referrals-value" style="font-size: 2.3em; margin: 59px 59px;" class="absolute font-medium">
-                        NaN</div>
-                    <canvas id="referrals-pie"></canvas>
-                </div>
-                <div class=" my-2">
-                    <div class=" text-gray-600 text-xl font-medium text-center">Referrals</div>
-                    <div class=" text-gray-600 text-center ">45 points earned</div>
-                </div>
-            </div>
-        </div>
+    <div class=" bg-white rounded-md my-2 mr-5 w-full">
+        <div class="py-3 pl-6 font-medium text-lg border-b-2">Last 5 days' activity</div>
+        <div class=" rounded-lg overflow-hidden">
+            <canvas class="p-10 " id="chartLine"></canvas>
+          </div>
     </div>
     
 </div>

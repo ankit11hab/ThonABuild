@@ -8,11 +8,13 @@
         {% include "navbar.html" %}
             <div class="flex">
                 <div>
-                    {% include "components/userdata.html" %}
                     {% include "components/stats.html" %}
+                    {% include "components/userdata.html" %}
                     {% include "components/cards.html" %}
                     {% include "components/platforms.html" %}
+                    
                 </div>
+                
             </div>
         </div>
     </div>
@@ -21,6 +23,69 @@
 {%endblock%}
 {% block script %}
 <script>
+    const labels = [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Notifications',
+            backgroundColor: 'green',
+            borderColor: 'green',
+            borderWidth:"5",
+            data: [{{notifdays.day1}}, {{notifdays.day2}}, {{notifdays.day3}}, {{notifdays.day4}}, {{notifdays.day5}}, 25],
+        },
+        ]
+    };
+    const configLineChart = {
+        type: 'line',
+        data,
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    grid: {
+                        color: "rgb(173, 173, 173)",
+                        tickColor: 'white',
+                        
+                    }
+                },
+                y: {
+                    grid: {
+                        color: "rgb(173, 173, 173)",
+                        tickColor: 'white',
+                    },
+                    max: 20,
+                    ticks: {
+                        // forces step size to be 50 units
+                        stepSize: 10
+                    }
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        // This more specific font property overrides the global property
+                        color: "white",
+                        font: {
+                            size: 18 // 'size' now within object 'font {}'
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    var chartLine = new Chart(
+        document.getElementById('chartLine'),
+        configLineChart
+    );
     const btn = document.querySelector(".mobile");
     const sidebar = document.querySelector(".navbar");
     const arrow = document.querySelector(".side");

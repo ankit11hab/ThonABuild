@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields.core import StringField
+from wtforms.fields.core import DateTimeField, SelectField, StringField
 from wtforms.fields.simple import PasswordField, SubmitField,BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from application.models import User
@@ -25,6 +25,11 @@ class LoginForm(FlaskForm):
 
 
 class NotifyTemplate(FlaskForm):
+    scheduled_date =  DateTimeField('Scheduled Date',format='%Y-%m-%dT%H:%M')
+    frequency = SelectField(
+        u'Frequency',
+        choices = [('Once', 'Once'), ('Daily', 'Daily'), ('Weekly', 'Weekly'), ('Monthly', 'Monthly')]
+    )
     template = TextAreaField('Template', validators = [DataRequired()], render_kw={"placeholder": "Message", "rows":"7"})
     score = StringField('Score', render_kw={"placeholder": "Score"})
     event = StringField('Score', render_kw={"placeholder": "Event"})
