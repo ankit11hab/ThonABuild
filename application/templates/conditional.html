@@ -90,7 +90,8 @@
                                                                 scores at which notification will be triggered. Each
                                                                 module will have multiple unique factors for which the
                                                                 triggers have to be defined.</p><br>
-                                                            <a href = "{{ url_for('score_based') }}"><button class="btn btn-primary">Continue</button></a>
+                                                            <a href="{{ url_for('score_based') }}"><button
+                                                                    class="btn btn-primary">Continue</button></a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -126,7 +127,8 @@
                                                                 events i. Configure custom notifications for
                                                                 organisation process events example: Performance rating
                                                                 closing date</p><br>
-                                                                <a href = "{{ url_for('event_based') }}"><button class="btn btn-primary">Continue</button></a>
+                                                            <a href="{{ url_for('event_based') }}"><button
+                                                                    class="btn btn-primary">Continue</button></a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -157,8 +159,12 @@
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><b>Activity based</b></h5><br>
-                                                            <p class="card-text">You can set frequency that they wish to see the employee on the app. For example – if the frequency is set as daily – then system will send trigger at pre define time</p><br>
-                                                            <a href = "{{ url_for('activity_based') }}"><button class="btn btn-primary">Continue</button></a>
+                                                            <p class="card-text">You can set frequency that they wish to
+                                                                see the employee on the app. For example – if the
+                                                                frequency is set as daily – then system will send
+                                                                trigger at pre define time</p><br>
+                                                            <a href="{{ url_for('activity_based') }}"><button
+                                                                    class="btn btn-primary">Continue</button></a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -189,11 +195,14 @@
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><b>Time based</b></h5><br>
-                                                            <p class="card-text">a) Timeline related – for factors in each module (dates as timeline)
+                                                            <p class="card-text">a) Timeline related – for factors in
+                                                                each module (dates as timeline)
                                                                 b) Daily activity update timeline (example before 7 pm)
                                                                 c) Assessment
-                                                                • Admin can set up the timeline when the trigger has to be sent – example: 1 week 
-                                                                before end date, everyday for last 4 days, 2 hrs before the end time of assessment </p><br>
+                                                                • Admin can set up the timeline when the trigger has to
+                                                                be sent – example: 1 week
+                                                                before end date, everyday for last 4 days, 2 hrs before
+                                                                the end time of assessment </p><br>
                                                             <button class="btn btn-primary">Continue</button>
                                                         </div>
                                                     </div>
@@ -225,9 +234,12 @@
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><b>Participation based</b></h5><br>
-                                                            <p class="card-text">Admin launches a new activity – example poll, survey; then the admin will be able to 
-                                                                configure trigger for participating in the activity</p><br>
-                                                            <button class="btn btn-primary">Continue</button>
+                                                            <p class="card-text">Admin launches a new activity – example
+                                                                poll, survey; then the admin will be able to
+                                                                configure trigger for participating in the activity</p>
+                                                            <br>
+                                                            <a href="{{ url_for('participation_based') }}"><button
+                                                                    class="btn btn-primary">Continue</button></a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -243,9 +255,9 @@
                                                                                 fill="#334D6E" />
                                                                         </svg>
                                                                     </div>
-                                                                    <div id="level-value" style="margin: 100px 65px;"
+                                                                    <div id="participation" style="margin: 100px 65px;"
                                                                         class="absolute font-medium text-xl ">NaN</div>
-                                                                    <canvas id="level-pie"></canvas>
+                                                                    <canvas id="participation-pie"></canvas>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -258,9 +270,11 @@
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><b>Role based</b></h5><br>
-                                                            <p class="card-text">Admin can set certain triggers based on roles
+                                                            <p class="card-text">Admin can set certain triggers based on
+                                                                roles
                                                             </p><br>
-                                                            <button class="btn btn-primary">Continue</button>
+                                                            <a href="{{ url_for('role_based') }}"><button
+                                                                    class="btn btn-primary">Continue</button></a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -276,16 +290,16 @@
                                                                                 fill="#334D6E" />
                                                                         </svg>
                                                                     </div>
-                                                                    <div id="level-value" style="margin: 100px 65px;"
+                                                                    <div id="role" style="margin: 100px 65px;"
                                                                         class="absolute font-medium text-xl ">NaN</div>
-                                                                    <canvas id="level-pie"></canvas>
+                                                                    <canvas id="role-pie"></canvas>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                         <div class="  w-80 border-gray-400 rounded mx-4 m-{5}"></div>
                                     </div>
@@ -329,13 +343,13 @@
 
 
 
-    const levelPoints = [{{data.scoreno}}, 14];
-    if ({{data.scoreno}}<10)
-        document.getElementById('score').innerText = '00' + levelPoints[0];
-    else if ({{data.scoreno}}<100)
-        document.getElementById('score').innerText = '0' + levelPoints[0];
+    const levelPoints = [{{ data.scoreno }}, 14];
+    if ({{ data.scoreno }}< 10)
+    document.getElementById('score').innerText = '00' + levelPoints[0];
+    else if ({{ data.scoreno }}< 100)
+    document.getElementById('score').innerText = '0' + levelPoints[0];
     else
-        document.getElementById('score').innerText = levelPoints[0];
+    document.getElementById('score').innerText = levelPoints[0];
     // class initialization(myChat)
     var levelChart = new Chart(document.getElementById('score-pie').getContext('2d'), {
         type: 'doughnut',
@@ -343,7 +357,7 @@
             datasets: [{
                 data: levelPoints,
                 backgroundColor: [
-                'rgba(255, 161, 51, 1)',
+                    'rgba(255, 161, 51, 1)',
                     'rgba(243, 246, 248, 1)'
                 ],
                 borderWidth: 0,
@@ -358,10 +372,10 @@
         }
     });
 
-    const eventPoints = [{{data.eventno}}, 14];
-    if ({{data.eventno}}<10)
+    const eventPoints = [{{ data.eventno }}, 14];
+    if ({{ data.eventno }}< 10)
     document.getElementById('event').innerText = '00' + eventPoints[0]
-    else if ({{data.eventno}}<100)
+    else if ({{ data.eventno }}< 100)
     document.getElementById('event').innerText = '0' + eventPoints[0]
     else
     document.getElementById('event').innerText = eventPoints[0]
@@ -372,10 +386,10 @@
             datasets: [{
                 data: eventPoints,
                 backgroundColor: [
-                'rgba(232, 107, 115, 1)',
+                    'rgba(232, 107, 115, 1)',
                     'rgba(243, 246, 248, 1)'
-                /* 'rgba(0, 201, 92, 1)',
-                    'rgba(243, 246, 248, 1)' */
+                    /* 'rgba(0, 201, 92, 1)',
+                        'rgba(243, 246, 248, 1)' */
                 ],
                 borderWidth: 0,
                 cutout: 62,
@@ -389,10 +403,10 @@
         }
     });
 
-    const activityPoints = [{{data.activityno}}, 14];
-    if ({{data.activityno}}<10)
+    const activityPoints = [{{ data.activityno }}, 14];
+    if ({{ data.activityno }}< 10)
     document.getElementById('activity').innerText = '00' + activityPoints[0]
-    else if ({{data.activityno}}<100)
+    else if ({{ data.activityno }}< 100)
     document.getElementById('activity').innerText = '0' + activityPoints[0]
     else
     document.getElementById('activity').innerText = activityPoints[0]
@@ -403,7 +417,63 @@
             datasets: [{
                 data: activityPoints,
                 backgroundColor: [
-                'rgba(0, 201, 92, 1)',
+                    'rgba(0, 201, 92, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+    const rolePoints = [{{ data.roleno }}, 14];
+    if ({{ data.roleno }}< 10)
+    document.getElementById('role').innerText = '00' + rolePoints[0]
+    else if ({{ data.roleno }}< 100)
+    document.getElementById('role').innerText = '0' + rolePoints[0]
+    else
+    document.getElementById('role').innerText = rolePoints[0]
+    // class initialization(myChat)
+    var levelChart = new Chart(document.getElementById('role-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: rolePoints,
+                backgroundColor: [
+                    'rgba(0, 201, 92, 1)',
+                    'rgba(243, 246, 248, 1)'
+                ],
+                borderWidth: 0,
+                cutout: 62,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: false,
+                tooltip: false,
+            }
+        }
+    });
+    const participationPoints = [{{ data.participationno }}, 14];
+    if ({{ data.participationno }}< 10)
+    document.getElementById('participation').innerText = '00' + participationPoints[0]
+    else if ({{ data.participationno }}< 100)
+    document.getElementById('participation').innerText = '0' + participationPoints[0]
+    else
+    document.getElementById('participation').innerText = participationPoints[0]
+    // class initialization(myChat)
+    var levelChart = new Chart(document.getElementById('participation-pie').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: participationPoints,
+                backgroundColor: [
+                    'rgba(0, 201, 92, 1)',
                     'rgba(243, 246, 248, 1)'
                 ],
                 borderWidth: 0,
