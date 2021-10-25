@@ -9,7 +9,7 @@ The project is a Trigger-Notification engine to create, manage and execute all N
 
 ## How to setup environment variables
 These are the environment variables we have used in our project. These are to be added in .env file
-```json
+```javascript
 WHATSAPP_FROM = "+14155238886"
 WHATSAPP_TO = ""
 SMS_TO = ""
