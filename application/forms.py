@@ -37,11 +37,11 @@ class NotifyTemplate(FlaskForm):
     template = TextAreaField('Template', validators=[DataRequired()], render_kw={
                              "placeholder": "Message", "rows": "7"})
     score = StringField('Score', render_kw={"placeholder": "Score"})
-    event = StringField('Score', render_kw={"placeholder": "Event"})
-    activity = StringField('Score', render_kw={"placeholder": "Activity"})
+    event = StringField('Event', render_kw={"placeholder": "Event"})
+    activity = StringField('Activity', render_kw={"placeholder": "Activity"})
     role = StringField('Role', render_kw={"placeholder": "Role"})
     participation = StringField(
-        'Role', render_kw={"placeholder": "participationno"})
+        'Participation', render_kw={"placeholder": "participationno"})
     sendwhatsappmsg = BooleanField('Send WhatsApp msg')
     image = FileField('Attach Image', validators=[
                       FileAllowed(['jpg', 'png'], 'Images only!')])
