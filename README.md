@@ -20,8 +20,8 @@ ACCOUNT_SID = "AC43c7b68c8b49caeaa03f66ce7219a28b"
 AUTH_TOKEN = "736c15a0b3049fa325bc0c76cfa084ab"
 ```
 ## Demonstration video
-Here is the demonstration video for our project
-{{link}}
+Here is the demonstration video for our project: 
+https://drive.google.com/file/d/1TjKIyjpVjaqn4fkmY84CvISsytkxYbqz/view?usp=sharing
 ## Some screenshots
 | Authentication Page     | Dashboard Page |
 | :---        |    :----:   |
