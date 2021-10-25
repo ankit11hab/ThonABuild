@@ -55,7 +55,7 @@
         height: 20px;
     }
     #history tr:hover {background-color: #ddd;cursor:pointer;}
-    #history th {background-color: #f2f2f2;}
+    #history th {background-color: white;}
 </style>
 {%endblock%}
 {% block body %}
@@ -92,7 +92,20 @@
                                                 <th>Date</th>
                                             </tr> -->
                                             {% for data in data %}
-                                                
+                                                {% if data.type== 'Type' %}
+                                                <tr>
+                                                    <th>{{data.type}}</th>
+                                                    <th>{{data.frequency}}</th>
+                                                    <th>{{data.event_date}}</th>
+                                                    <th>{{data.due_data}}</th>
+                                                    <th>{{data.employee}}</th>
+                                                    <th>{{data.employee_details}}</th>
+                                                    <th>{{data.event_code}}</th>
+                                                    <th>{{data.action_perform}}</th>
+                                                    <th>{{data.notification_controller}}</th>
+                                                    <th>{{data.notification_event}}</th>
+                                                </tr>
+                                                {% else %}
                                                 <tr>
                                                     <td>{{data.type}}</td>
                                                     <td>{{data.frequency}}</td>
@@ -105,6 +118,7 @@
                                                     <td>{{data.notification_controller}}</td>
                                                     <td>{{data.notification_event}}</td>
                                                 </tr>
+                                                {% endif %}
                                                 
                                             {% endfor %}
                                         </table>
