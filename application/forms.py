@@ -36,6 +36,8 @@ class NotifyTemplate(FlaskForm):
     )
     template = TextAreaField('Template', validators=[DataRequired()], render_kw={
                              "placeholder": "Message", "rows": "7"})
+    mobileno = StringField('Contact number', render_kw={"placeholder": "Contact number"})
+    emailid = StringField('Email', render_kw={"placeholder": "Email"})
     score = StringField('Score', render_kw={"placeholder": "Score"})
     event = StringField('Event', render_kw={"placeholder": "Event"})
     activity = StringField('Activity', render_kw={"placeholder": "Activity"})

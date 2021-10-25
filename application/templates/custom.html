@@ -75,59 +75,55 @@
                                         <br>
 
 
+                                        <form method = "POST" action="" enctype="multipart/form-data">
+                                            {{ form.hidden_tag() }}
                                         <div class="sform">
                                             <form action="#" method="post" id="idea_form" width:50%>
-                                                <div class="subject m-5 my-8 text-m border-b-2 border-gray-300">
-                                                    <label for="subject"></label>
-                                                    <input type="date" placeholder="Event Date" name="event_date"
-                                                        id="event_date" required>
 
-                                                </div>
-                                                <div class="subject m-5 my-8 text-m border-b-2 border-gray-300">
-                                                    <label for="subject"></label>
-                                                    <input type="date" placeholder="Due Date" name="due_date"
-                                                        id="due_date" required>
-
-                                                </div>
-
-
-
-                                                <div class="message m-5 my-8 text-m border-b-2 border-gray-60">
+                                                <div class="message m-5 border-b-2 my-8 text-m border-gray-60">
                                                     <label for="template"></label>
-                                                    <textarea name="template" placeholder="Template" id="template"
-                                                        cols="35" rows="5" required></textarea>
+                                                    <div>{{ form.mobileno(class="form-control") }}</div>
                                                 </div>
-
-                                                <select class="message m-5 my-8 text-m border-b-2 border-gray-60"
-                                                    id="time" name="time">
-                                                    <option value="immediately">Immediately</option>
-                                                    <option value="daily">Daily</option>
-                                                    <option value="weekly">Weekly</option>
-                                                    <option value="monthly">Monthly</option>
-                                                </select>
-
-                                                <select class="message m-5 my-8 text-m border-b-2 border-gray-60" id=""
-                                                    name="country">
-                                                    <option value="immediately">Immediately</option>
-                                                    <option value="daily">Daily</option>
-                                                    <option value="weekly">Weekly</option>
-                                                    <option value="monthly">Monthly</option>
-                                                </select><br>
-
+                
+                                                <div class="message m-5 border-b-2 my-8 text-m border-gray-60">
+                                                    <label for="template"></label>
+                                                    <div>{{ form.emailid(class="form-control") }}</div>
+                                                </div>
                                                 <div class="message m-5 my-8 text-m border-gray-60">
-                                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                    <label for="vehicle1"> SMS</label><br>
-                                                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                                                    <label for="vehicle2"> Email</label><br>
-                                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                                                    <label for="vehicle3"> Whats App</label><br><br>
+                                                    <label for="template"></label>
+                                                    <div>{{ form.template(class="form-control") }}</div>
                                                 </div>
-
+                
+                                                
+                                                <div class="message m-5 my-8 text-m border-gray-60">
+                                                    <label for="template">Attach Image (Image will go only in whatsapp)</label>
+                                                    <div>{{ form.image(class="form-control") }}</div>
+                                                </div>
+                                                
+                                                <div class="message m-5 my-8 text-m border-gray-60">
+                                                    <label for="template"></label>
+                                                    {{ form.frequency(class="form-control") }}
+                                                </div>
+                                                <div class="message m-5 my-8 text-m border-gray-60">
+                                                    <label for="template"></label>
+                                                    {{ form.scheduled_date(class="form-control", type='datetime-local') }}
+                                                </div>
+                
+                                                <div class="message m-5 my-8 text-m border-gray-60">
+                                                    {{ form.sendsms(class="form-check-input") }}
+                                                    <label for="sms" style = "color: #999;"> SMS</label><br>
+                                                    {{ form.sendmail(class="form-check-input") }}
+                                                    <label for="email" style = "color: #999;"> Email</label><br>
+                                                    
+                                                    {{ form.sendwhatsappmsg(class="form-check-input") }}
+                                                    <label for="whatsapp" style = "color: #999;"> Whats App</label><br><br>
+                                                </div>
+                
                                                 <div class="submit m-4 mx-6 p-1 ">
-                                                    <input type="submit" value="Submit" id="form_button" />
+                                                    <div>{{ form.submit(class="btn btn-primary") }}</div>
                                                 </div>
                                         </div>
-
+                                        </form>
                                         <br>
                                         <br>
 

@@ -88,10 +88,58 @@ def documentation():
         return redirect(url_for('login'))
 
 
-@app.route("/custom")
+@app.route("/custom", methods=['GET', 'POST'])
 def custom():
     if current_user.is_authenticated:
-        return render_template('custom.html')
+        form = NotifyTemplate()
+        if form.validate_on_submit():
+            template = form.template.data
+            if(request.files['image']):
+                uploaded_img = request.files['image']
+                cloudinary.config(cloud_name="dmcbeyvr4", api_key="641921374166998",
+                                  api_secret="q4zM2BjtuVSux3hKkXpG_SqqcnY")
+                upload_result = cloudinary.uploader.upload(
+                    uploaded_img, folder="buildathon/")
+                print(upload_result['secure_url'])
+            emails = form.emailid.data.split("; ")
+            mobiles = form.mobileno.data.split("; ")
+            print(emails)
+            print(mobiles)
+            notif = NotificationHistory(user_id=current_user.id, type='Custom', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
+                                        message_body=template, period=form.frequency.data, scheduled_date=form.scheduled_date.data, score=form.score.data, event=form.event.data, activity=form.activity.data)
+            db.session.add(notif)
+            db.session.commit()
+            from twilio.rest import Client
+            account_sid = ACCOUNT_SID
+            auth_token = AUTH_TOKEN
+            client = Client(account_sid, auth_token) 
+            if form.sendwhatsappmsg.data:
+                for mobile_to in mobiles:
+                    print(mobile_to)
+                    if(request.files['image']):
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                    else:
+                        whatsappmessage = client.messages.create(
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
+            if form.sendsms.data:
+                for mobile_to in mobiles:
+                    message = client.messages.create(
+                    body=template,
+                    messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
+                    to=mobile_to
+                    )
+
+            if form.sendmail.data:
+                for email_to in emails:
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()
+                    server.login(EMAIL_FROM,PASSWORD)
+                    server.sendmail(EMAIL_FROM, email_to, template)
+                    server.quit()
+
+            return redirect(url_for('home'))
+        return render_template('custom.html', form=form)
     else:
         return redirect(url_for('login'))
 
