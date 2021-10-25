@@ -46,7 +46,7 @@ def account():
 @login_required
 def data():
     if current_user.is_authenticated:
-        return render_template('data.html')
+        return render_template('data.html', heading='data')
     else:
         return redirect(url_for('login'))
 
@@ -75,7 +75,7 @@ def home():
             'day1': day1
         }
         data = current_user.data
-        return render_template('home.html', notif=len(notif), data=data, notifdays=notifdays)
+        return render_template('home.html', notif=len(notif), data=data, notifdays=notifdays, heading='Dashboard')
     else:
         return redirect(url_for('login'))
 
@@ -83,7 +83,7 @@ def home():
 @app.route("/documentation")
 def documentation():
     if current_user.is_authenticated:
-        return render_template('documentation.html')
+        return render_template('documentation.html', heading='documentation')
     else:
         return redirect(url_for('login'))
 
@@ -112,34 +112,34 @@ def custom():
             from twilio.rest import Client
             account_sid = ACCOUNT_SID
             auth_token = AUTH_TOKEN
-            client = Client(account_sid, auth_token) 
+            client = Client(account_sid, auth_token)
             if form.sendwhatsappmsg.data:
                 for mobile_to in mobiles:
                     print(mobile_to)
                     if(request.files['image']):
                         whatsappmessage = client.messages.create(
-                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                            from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
                     else:
                         whatsappmessage = client.messages.create(
-                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
+                            from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
             if form.sendsms.data:
                 for mobile_to in mobiles:
                     message = client.messages.create(
-                    body=template,
-                    messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
-                    to=mobile_to
+                        body=template,
+                        messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
+                        to=mobile_to
                     )
 
             if form.sendmail.data:
                 for email_to in emails:
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
-                    server.login(EMAIL_FROM,PASSWORD)
+                    server.login(EMAIL_FROM, PASSWORD)
                     server.sendmail(EMAIL_FROM, email_to, template)
                     server.quit()
 
             return redirect(url_for('home'))
-        return render_template('custom.html', form=form)
+        return render_template('custom.html', form=form, heading='customtrigger')
     else:
         return redirect(url_for('login'))
 
@@ -258,25 +258,25 @@ def score_based():
                     print(email_to) """
             account_sid = ACCOUNT_SID
             auth_token = AUTH_TOKEN
-            client = Client(account_sid, auth_token) 
+            client = Client(account_sid, auth_token)
             if form.sendwhatsappmsg.data:
                 if(request.files['image']):
                     whatsappmessage = client.messages.create(
-                    from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+WHATSAPP_TO)
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+WHATSAPP_TO)
                 else:
                     whatsappmessage = client.messages.create(
-                    from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+WHATSAPP_TO)
+                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+WHATSAPP_TO)
             if form.sendsms.data:
                 message = client.messages.create(
-                body=template,
-                messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
-                to=WHATSAPP_TO
+                    body=template,
+                    messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
+                    to=WHATSAPP_TO
                 )
 
             if form.sendmail.data:
                 server = smtplib.SMTP('smtp.gmail.com', 587)
                 server.starttls()
-                server.login(EMAIL_FROM,PASSWORD)
+                server.login(EMAIL_FROM, PASSWORD)
                 server.sendmail(EMAIL_FROM, 'ankit11hab@outlook.com', template)
                 server.quit()
 
@@ -455,7 +455,7 @@ def participation_based():
 def notification_history():
     if current_user.is_authenticated:
         notif = current_user.history
-        return render_template('history.html', notif=notif)
+        return render_template('history.html', notif=notif, heading='notificationhistory')
     else:
         return redirect(url_for('login'))
 
@@ -494,7 +494,7 @@ def conditional_triggers():
             'participationno': participation,
             'roleno': role
         }
-        return render_template('conditional.html', data=data)
+        return render_template('conditional.html', data=data, heading='conditionaltrigger')
     else:
         return redirect(url_for('login'))
 
@@ -539,7 +539,7 @@ def upload_csv():
 def usertable():
     if current_user.is_authenticated:
         data = current_user.data
-        return render_template('usertable.html', data=data)
+        return render_template('usertable.html', data=data, heading='usertable')
     else:
         return redirect(url_for('login'))
 
@@ -577,7 +577,7 @@ def addrow():
             db.session.add(row)
             db.session.commit()
             return redirect(url_for('usertable'))
-        return render_template('addrow.html', form=form)
+        return render_template('addrow.html', form=form, heading='usertable')
     else:
         return redirect(url_for('login'))
 

@@ -1,4 +1,5 @@
 <!-- left_nav-small_screens -->
+
 <head>
     <link href='https://fonts.googleapis.com/css?family=Balsamiq Sans' rel='stylesheet'>
 </head>
@@ -6,49 +7,49 @@
     <div class=" mt-3 flex flex-col justify-center bg-white w-80 border-gray-400 rounded shadow-md px-12">
         <center><span style="font-family:'Balsamiq Sans' ;font-size: 24px;font-weight: 300;background: linear-gradient(to right,rgb(255, 145, 0), rgb(204, 68, 147),rgb(150, 6, 90),rgb(31, 1, 163));-webkit-background-clip: text;background-clip:transparent;
                 -webkit-text-fill-color: transparent;"><b>eXlyǵenze</b></span><BR>
-                <div style="font-size: 7px;font-weight:500px;letter-spacing: 1px;transform: translate(0,-5px);">POTENTIAL MADE POSSIBLE</div></center>
-        
+            <div style="font-size: 7px;font-weight:500px;letter-spacing: 1px;transform: translate(0,-5px);">POTENTIAL
+                MADE POSSIBLE</div>
+        </center>
+
         <div class="elements pt-2 mt-2 mb-28 flex flex-col justify-center">
             <a href="{{ url_for('home') }}"
                 class="rounded-full flex flex-nowrap py-4 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M9.35 11.85H2.15V2.15H9.35V11.85ZM9.35 21.85H2.15V17.15H9.35V21.85ZM21.85 21.85H14.65V12.15H21.85V21.85ZM14.65 6.85V2.15H21.85V6.85H14.65Z"
-                        stroke="#109CF1" stroke-width="2.8" />
-                </svg>
+                {% if heading == 'Dashboard' %}
+                <img src="{{url_for('static',filename='icons/dashboard-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/dashboard.png')}}" />
+                {% endif %}
                 <p class="pl-4 hover:no-underline">Dashboard</p>
             </a>
             <!-- tasks -->
+            <a href="{{ url_for('custom') }}"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                style="cursor:pointer;">
+                {% if heading == "customtrigger" %}
+                <img src="{{url_for('static',filename='icons/tasks-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/tasks.png')}}" />
+                {% endif %}
+                <p class="pl-4 no-underline">Custom Trigger</p>
+            </a>
             <a href="{{ url_for('conditional_triggers') }}"
                 class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
-                <svg class="" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 3.75L22.5 10.4167M15 3.75L7.5 10.4167M15 3.75V21.25" stroke="#C2CFE0"
-                        stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M27.5 21.25V26.25H2.5V21.25" stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
+                {% if heading == 'conditionaltrigger' %}
+                <img src="{{url_for('static',filename='icons/tasks-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/tasks.png')}}" />
+                {% endif %}
                 <p class="pl-3 no-underline">Conditional Triggers</p>
-            </a>
-
-            <!-- Group c put POC url here like profile uurl is added -->
-            <a href="{{ url_for('custom') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
-                <svg class="" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 3.75L22.5 10.4167M15 3.75L7.5 10.4167M15 3.75V21.25" stroke="#C2CFE0"
-                        stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M27.5 21.25V26.25H2.5V21.25" stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-                <p class="pl-3 no-underline">Custom Triggers</p>
             </a>
 
 
             <a href="{{ url_for('notification_history') }}"
                 class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.9 9.35V2.15H22.85V9.35H1.9ZM1.9 21.85V14.65H22.85V21.85H1.9Z" stroke="#C2CFE0"
-                        stroke-width="2.8" />
-                </svg>
+                {% if heading == 'notificationhistory' %}
+                <img src="{{url_for('static',filename='icons/profile-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/profile.png')}}" />
+                {% endif %}
                 <p class="pl-4 no-underline">Notification History</p>
             </a>
 
@@ -57,24 +58,32 @@
             <a href="{{ url_for('data') }}"
                 class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
                 style="cursor:pointer;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M7.56665 6.16663C7.56665 3.71691 9.55026 1.7333 12 1.7333C14.4497 1.7333 16.4333 3.71691 16.4333 6.16663C16.4333 8.61635 14.4497 10.6 12 10.6C9.55026 10.6 7.56665 8.61635 7.56665 6.16663ZM1.73331 19.2916C1.73331 18.836 1.95042 18.3334 2.55819 17.7724C3.17547 17.2027 4.09758 16.6724 5.22711 16.2199C7.48842 15.314 10.2281 14.8583 12 14.8583C13.7718 14.8583 16.5115 15.314 18.7728 16.2199C19.9024 16.6724 20.8245 17.2027 21.4418 17.7724C22.0495 18.3334 22.2666 18.836 22.2666 19.2916V22.2666H1.73331V19.2916Z"
-                        stroke="#C2CFE0" stroke-width="2.8" />
-                </svg>
+                {% if heading == "data" %}
+                <img src="{{url_for('static',filename='icons/submission-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/submission.png')}}" />
+                {% endif %}
                 <p class="pl-4 no-underline">Upload Data</p>
             </a>
+            <a href="{{ url_for('usertable') }}"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                style="cursor:pointer;">
+                {% if heading == "usertable" %}
+                <img src="{{url_for('static',filename='icons/submission-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/submission.png')}}" />
+                {% endif %}
+                <p class="pl-4 no-underline">Users Table</p>
+            </a>
+
             <hr class="border bg-gray-200" />
             <a href="{{ url_for('documentation') }}"
                 class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline mt-3">
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M15 3.9C16.4577 3.9 17.9011 4.18711 19.2478 4.74494C20.5945 5.30276 21.8182 6.12038 22.8489 7.15112C23.8796 8.18185 24.6972 9.4055 25.2551 10.7522C25.8129 12.0989 26.1 13.5423 26.1 15C26.1 16.4577 25.8129 17.9011 25.2551 19.2478C24.6972 20.5945 23.8796 21.8182 22.8489 22.8489C21.8182 23.8796 20.5945 24.6972 19.2478 25.2551C17.9011 25.8129 16.4577 26.1 15 26.1C13.5423 26.1 12.0989 25.8129 10.7522 25.2551C9.4055 24.6972 8.18184 23.8796 7.15111 22.8489C6.12038 21.8182 5.30276 20.5945 4.74494 19.2478C4.18711 17.9011 3.9 16.4577 3.9 15C3.9 13.5423 4.18711 12.0989 4.74494 10.7522C5.30277 9.40549 6.12039 8.18184 7.15112 7.15111C8.18185 6.12038 9.40551 5.30276 10.7522 4.74493C12.0989 4.18711 13.5423 3.9 15 3.9L15 3.9Z"
-                        stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round" />
-                    <line x1="13.9" y1="13.9" x2="13.9" y2="19.85" stroke="#C2CFE0" stroke-width="2.8"
-                        stroke-linecap="round" />
-                    <circle cx="14.25" cy="9.25" r="1.75" fill="#C2CFE0" />
-                </svg>
+                {% if heading == 'documentation' %}
+                <img src="{{url_for('static',filename='icons/contactus-active.png')}}" />
+                {% else %}
+                <img src="{{url_for('static',filename='icons/contactus.png')}}" />
+                {% endif %}
                 <p class="pl-3 no-underline">Documentation</p>
             </a>
             <a href="{{ url_for('logout') }}"
