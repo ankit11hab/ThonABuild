@@ -249,36 +249,36 @@ def score_based():
             db.session.add(notif)
             db.session.commit()
             data = current_user.data
-            """ for item in data:
+            for item in data:
                 if item.type == 'Score-Based' and item.notification_controller == form.score.data+' ':
                     print("Hi Ankit")
                     txt = item.employee_details
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
-                    print(email_to) """
-            account_sid = ACCOUNT_SID
-            auth_token = AUTH_TOKEN
-            client = Client(account_sid, auth_token)
-            if form.sendwhatsappmsg.data:
-                if(request.files['image']):
-                    whatsappmessage = client.messages.create(
-                        from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+WHATSAPP_TO)
-                else:
-                    whatsappmessage = client.messages.create(
-                        from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+WHATSAPP_TO)
-            if form.sendsms.data:
-                message = client.messages.create(
-                    body=template,
-                    messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
-                    to=WHATSAPP_TO
-                )
-
-            if form.sendmail.data:
-                server = smtplib.SMTP('smtp.gmail.com', 587)
-                server.starttls()
-                server.login(EMAIL_FROM, PASSWORD)
-                server.sendmail(EMAIL_FROM, 'ankit11hab@outlook.com', template)
-                server.quit()
+                    print(email_to)
+                    """ account_sid = ACCOUNT_SID
+                    auth_token = AUTH_TOKEN
+                    client = Client(account_sid, auth_token) 
+                    if form.sendwhatsappmsg.data:
+                        if(request.files['image']):
+                            whatsappmessage = client.messages.create(
+                            from_='whatsapp:'+WHATSAPP_FROM, body=template, media_url=upload_result['secure_url'], to='whatsapp:'+mobile_to)
+                        else:
+                            whatsappmessage = client.messages.create(
+                            from_='whatsapp:'+WHATSAPP_FROM, body=template, to='whatsapp:'+mobile_to)
+                    if form.sendsms.data:
+                        message = client.messages.create(
+                        body=template,
+                        messaging_service_sid='MG542ab6d1107edc9a4aee705badb89984',
+                        to=mobile_to
+                        )
+    
+                    if form.sendmail.data:
+                        server = smtplib.SMTP('smtp.gmail.com', 587)
+                        server.starttls()
+                        server.login(EMAIL_FROM,PASSWORD)
+                        server.sendmail(EMAIL_FROM, email_to, template)
+                        server.quit() """
 
             return redirect(url_for('home'))
         return render_template('submissions/score_form.html', form=form)

@@ -13,7 +13,7 @@
 
         <div class="elements pt-2 mt-2 mb-28 flex flex-col justify-center">
             <a href="{{ url_for('home') }}"
-                class="rounded-full flex flex-nowrap py-4 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                class="rounded-full flex flex-nowrap py-3 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
                 {% if heading == 'Dashboard' %}
                 <img src="{{url_for('static',filename='icons/dashboard-active.png')}}" />
                 {% else %}
@@ -23,17 +23,17 @@
             </a>
             <!-- tasks -->
             <a href="{{ url_for('custom') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                class="rounded-full flex flex-nowrap py-3 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline"
                 style="cursor:pointer;">
                 {% if heading == "customtrigger" %}
                 <img src="{{url_for('static',filename='icons/tasks-active.png')}}" />
                 {% else %}
                 <img src="{{url_for('static',filename='icons/tasks.png')}}" />
                 {% endif %}
-                <p class="pl-4 no-underline">Custom Trigger</p>
+                <p class="pl-4 no-underline">Custom Triggers</p>
             </a>
             <a href="{{ url_for('conditional_triggers') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                class="rounded-full flex flex-nowrap py-3 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
                 {% if heading == 'conditionaltrigger' %}
                 <img src="{{url_for('static',filename='icons/tasks-active.png')}}" />
                 {% else %}
@@ -44,7 +44,7 @@
 
 
             <a href="{{ url_for('notification_history') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                class="rounded-full flex flex-nowrap py-3 w-60 pl-5 hover:border-0 hover:bg-gray-100 hover:no-underline">
                 {% if heading == 'notificationhistory' %}
                 <img src="{{url_for('static',filename='icons/profile-active.png')}}" />
                 {% else %}
@@ -56,7 +56,7 @@
 
             <!-- profile -->
             <a href="{{ url_for('data') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                class="rounded-full flex flex-nowrap py-3 w-60 pl-5 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
                 style="cursor:pointer;">
                 {% if heading == "data" %}
                 <img src="{{url_for('static',filename='icons/submission-active.png')}}" />
@@ -65,7 +65,7 @@
                 {% endif %}
                 <p class="pl-4 no-underline">Upload Data</p>
             </a>
-            <a href="{{ url_for('usertable') }}"
+            <!-- <a href="{{ url_for('usertable') }}"
                 class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
                 style="cursor:pointer;">
                 {% if heading == "usertable" %}
@@ -74,11 +74,12 @@
                 <img src="{{url_for('static',filename='icons/submission.png')}}" />
                 {% endif %}
                 <p class="pl-4 no-underline">Users Table</p>
-            </a>
+            </a> -->
+            <hr>
 
             <hr class="border bg-gray-200" />
             <a href="{{ url_for('documentation') }}"
-                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline mt-3">
+                class="rounded-full flex flex-nowrap py-3 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline mt-3">
                 {% if heading == 'documentation' %}
                 <img src="{{url_for('static',filename='icons/contactus-active.png')}}" />
                 {% else %}
@@ -87,7 +88,7 @@
                 <p class="pl-3 no-underline">Documentation</p>
             </a>
             <a href="{{ url_for('logout') }}"
-                class="side rounded-full flex flex-nowrap py-4 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                class="side rounded-full flex flex-nowrap py-3 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M2.8531 15.7972C2.44895 15.3425 2.44895 14.6574 2.8531 14.2027L9.51976 6.7027C9.96006 6.20736 10.7186 6.16275 11.2139 6.60305C11.7092 7.04335 11.7538 7.80183 11.3135 8.29717L6.4222 13.7999L21.25 13.7999C21.9127 13.7999 22.45 14.3372 22.45 14.9999C22.45 15.6627 21.9127 16.1999 21.25 16.1999L6.4222 16.1999L11.3135 21.7027C11.7538 22.198 11.7092 22.9565 11.2139 23.3968C10.7186 23.8371 9.96006 23.7925 9.51976 23.2972L2.8531 15.7972Z"
