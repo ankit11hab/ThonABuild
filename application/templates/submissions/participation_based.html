@@ -1,0 +1,76 @@
+<style>
+    .form-input {
+        border: none;
+        background-color: transparent;
+        width: 580px;
+        outline: none;
+    }
+</style>
+<div class="subideabody" style="font-family: 'Roboto';">
+    <div class=" bg-gray-50 flex  ">
+
+        <div class="mx-4 flex-grow">
+
+            <br>
+            <div class=" flex flex-wrap ">
+                <div class=" bg-white max-w-4xl rounded-lg w-screen shadow-md">
+                    <div>
+                        <div class="py-3 pl-6 font-medium text-xl border-b-2 font-semibold">Participation Based Triggers </div>
+                        <br>
+
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="sform">
+                                <form action="#" method="post" id="idea_form" width:50%>
+
+                                    <div class="message m-5 border-b-2 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        <div>{{ form.participation(class="form-control") }}</div>
+                                    </div>
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        <div>{{ form.template(class="form-control") }}</div>
+                                    </div>
+
+
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template">Attach Image (Image will go only in whatsapp)</label>
+                                        <div>{{ form.image(class="form-control") }}</div>
+                                    </div>
+
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        {{ form.frequency(class="form-control") }}
+                                    </div>
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        <label for="template"></label>
+                                        {{ form.scheduled_date(class="form-control", type='datetime-local') }}
+                                    </div>
+
+                                    <div class="message m-5 my-8 text-m border-gray-60">
+                                        {{ form.sendsms(class="form-check-input") }}
+                                        <label for="sms" style="color: #999;"> SMS</label><br>
+                                        {{ form.sendmail(class="form-check-input") }}
+                                        <label for="email" style="color: #999;"> Email</label><br>
+
+                                        {{ form.sendwhatsappmsg(class="form-check-input") }}
+                                        <label for="whatsapp" style="color: #999;"> Whats App</label><br><br>
+                                    </div>
+
+                                    <div class="submit m-4 mx-6 p-1 ">
+                                        <div>{{ form.submit(class="btn btn-primary") }}</div>
+                                    </div>
+                            </div>
+                        </form>
+
+                        <br>
+                        <br>
+
+
+                        <div class="  w-80 border-gray-400 rounded mx-4 m-{5}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

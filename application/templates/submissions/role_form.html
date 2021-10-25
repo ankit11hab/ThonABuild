@@ -1,0 +1,66 @@
+{% extends 'basic.html'%}
+{%block title%}role-based triggers {%endblock%}
+{%block style%}
+<style>
+    .subideabody {
+        font-family: 'Poppins';
+        background-color: #f8f8f8;
+    }
+
+    .sform {
+        width: 70%;
+    }
+
+
+    .bell {
+        position: fixed;
+        top: 1vw;
+        right: 1vw;
+    }
+
+    #form_button {
+        background-color: #109CF1;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        padding-right: 25px;
+        padding-left: 25px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-family: 'Poppins';
+    }
+
+    input[type=text] {
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+    }
+
+    input[type=textarea] {
+        outline: none;
+    }
+</style>
+{%endblock%}
+{% block body %}
+
+<body>
+    <div class="bg-blue-50 flex">
+        {% include "navbar.html" %}
+        <div class="flex">
+            <div>
+                {% include "submissions/role_based.html" %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+{%endblock%}
+{% block script %}
+
+{% endblock %}
