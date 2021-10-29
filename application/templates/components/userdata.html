@@ -31,8 +31,12 @@
                     </button></a>
                 {% else %}
                 <a href = "{{ url_for('data') }}"><button
-                    class=" bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base">
-                    Upload data
+                    class=" bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base" style = "width:170px">
+                    Upload CSV data
+                </button></a> 
+                <a href = "{{ url_for('fetchapi') }}"><button
+                    class=" bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base" style = "width:170px">
+                    Fetch from API
                 </button></a> 
                 {% endif %}
                 

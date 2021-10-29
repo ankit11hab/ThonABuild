@@ -2,6 +2,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import time
 from flask import render_template, url_for, redirect, request
+from application.dummyapi import customapi
 import cloudinary
 import cloudinary.uploader
 from flask_login.utils import logout_user
@@ -17,6 +18,7 @@ import io
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from io import TextIOWrapper
+import requests, json
 WHATSAPP_FROM = os.getenv("WHATSAPP_FROM")
 WHATSAPP_TO = os.getenv("WHATSAPP_TO")
 SMS_TO = os.getenv("SMS_TO")
@@ -195,12 +197,12 @@ def event_based():
             db.session.commit()
             data = current_user.data
             for item in data:
-                if item.type == 'Event-Based' and item.event_code == form.event.data+' ':
+                if item.event_code == form.event.data:
                     txt = item.employee_details
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
                     print(email_to)
-                    """ account_sid = ACCOUNT_SID
+                    account_sid = ACCOUNT_SID
                     auth_token = AUTH_TOKEN
                     client = Client(account_sid, auth_token) 
                     if form.sendwhatsappmsg.data:
@@ -222,7 +224,7 @@ def event_based():
                         server.starttls()
                         server.login(EMAIL_FROM,PASSWORD)
                         server.sendmail(EMAIL_FROM, email_to, template)
-                        server.quit() """
+                        server.quit()
 
             return redirect(url_for('home'))
         return render_template('submissions/event_form.html', form=form)
@@ -244,10 +246,10 @@ def score_based():
                     uploaded_img, folder="buildathon/")
                 print(upload_result['secure_url'])
             from twilio.rest import Client
-            notif = NotificationHistory(user_id=current_user.id, type='Score Based', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
+            """ notif = NotificationHistory(user_id=current_user.id, type='Score Based', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
                                         message_body=template, period=form.frequency.data, scheduled_date=form.scheduled_date.data, score=form.score.data, event=form.event.data, activity=form.activity.data)
             db.session.add(notif)
-            db.session.commit()
+            db.session.commit() """
             data = current_user.data
             for item in data:
                 if item.type == 'Score-Based' and item.notification_controller == form.score.data+' ':
@@ -256,7 +258,7 @@ def score_based():
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
                     print(email_to)
-                    """ account_sid = ACCOUNT_SID
+                    account_sid = ACCOUNT_SID
                     auth_token = AUTH_TOKEN
                     client = Client(account_sid, auth_token) 
                     if form.sendwhatsappmsg.data:
@@ -278,7 +280,7 @@ def score_based():
                         server.starttls()
                         server.login(EMAIL_FROM,PASSWORD)
                         server.sendmail(EMAIL_FROM, email_to, template)
-                        server.quit() """
+                        server.quit()
 
             return redirect(url_for('home'))
         return render_template('submissions/score_form.html', form=form)
@@ -306,12 +308,12 @@ def activity_based():
             db.session.commit()
             data = current_user.data
             for item in data:
-                if item.notification_controller == form.activity.data+' ':
+                if item.notification_controller == form.activity.data:
                     txt = item.employee_details
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
                     print(email_to)
-                    """ account_sid = ACCOUNT_SID
+                    account_sid = ACCOUNT_SID
                     auth_token = AUTH_TOKEN
                     client = Client(account_sid, auth_token) 
                     if form.sendwhatsappmsg.data:
@@ -333,7 +335,7 @@ def activity_based():
                         server.starttls()
                         server.login(EMAIL_FROM,PASSWORD)
                         server.sendmail(EMAIL_FROM, email_to, template)
-                        server.quit() """
+                        server.quit()
 
             return redirect(url_for('home'))
         return render_template('submissions/activity_form.html', form=form)
@@ -355,18 +357,18 @@ def role_based():
                     uploaded_img, folder="buildathon/")
                 print(upload_result['secure_url'])
             from twilio.rest import Client
-            notif = NotificationHistory(user_id=current_user.id, type='Role Based', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
+            """ notif = NotificationHistory(user_id=current_user.id, type='Role Based', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
                                         message_body=template, period=form.frequency.data, scheduled_date=form.scheduled_date.data, score=form.role.data, event=form.event.data, activity=form.activity.data)
             db.session.add(notif)
-            db.session.commit()
+            db.session.commit() """
             data = current_user.data
             for item in data:
-                if item.type == 'Role-Based' and item.event_code == form.role.data+' ':
-                    txt = item.employee_details
+                txt = item.employee_details
+                if txt.split("; ")[0] == form.role.data:
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
                     print(email_to)
-                    """ account_sid = ACCOUNT_SID
+                    account_sid = ACCOUNT_SID
                     auth_token = AUTH_TOKEN
                     client = Client(account_sid, auth_token) 
                     if form.sendwhatsappmsg.data:
@@ -388,7 +390,7 @@ def role_based():
                         server.starttls()
                         server.login(EMAIL_FROM,PASSWORD)
                         server.sendmail(EMAIL_FROM, email_to, template)
-                        server.quit() """
+                        server.quit()
 
             return redirect(url_for('home'))
         return render_template('submissions/role_form.html', form=form)
@@ -410,18 +412,18 @@ def participation_based():
                     uploaded_img, folder="buildathon/")
                 print(upload_result['secure_url'])
             from twilio.rest import Client
-            notif = NotificationHistory(user_id=current_user.id, type='Event Participation', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
+            """ notif = NotificationHistory(user_id=current_user.id, type='Event Participation', email=form.sendmail.data, sms=form.sendsms.data, whatsapp=form.sendwhatsappmsg.data,
                                         message_body=template, period=form.frequency.data, scheduled_date=form.scheduled_date.data, score=form.participation.data, event=form.event.data, activity=form.activity.data)
             db.session.add(notif)
-            db.session.commit()
+            db.session.commit() """
             data = current_user.data
             for item in data:
-                if item.type == 'Event Participation' and item.event_code == form.participation.data+' ':
+                if item.notification_controller == form.participation.data:
                     txt = item.employee_details
                     email_to = txt.split("; ")[1]
                     mobile_to = txt.split("; ")[2]
                     print(email_to)
-                    """ account_sid = ACCOUNT_SID
+                    account_sid = ACCOUNT_SID
                     auth_token = AUTH_TOKEN
                     client = Client(account_sid, auth_token) 
                     if form.sendwhatsappmsg.data:
@@ -443,7 +445,7 @@ def participation_based():
                         server.starttls()
                         server.login(EMAIL_FROM,PASSWORD)
                         server.sendmail(EMAIL_FROM, email_to, template)
-                        server.quit() """
+                        server.quit()
 
             return redirect(url_for('home'))
         return render_template('submissions/participation_form.html', form=form)
@@ -689,3 +691,38 @@ scheduler = BackgroundScheduler()
 scheduler.add_job(func=send_scheduled_notifications,
                   trigger="interval", minutes=1)
 scheduler.start()
+
+
+@app.route('/fetchapi', methods=['GET', 'POST'])
+def fetchapi():
+    if current_user.is_authenticated:
+        req = requests.get('http://localhost:5000/ourapi')
+        data1=req.content
+        json_data=json.loads(data1)
+        #print(json_data)
+        for i in json_data['userdata']:
+            data = CSVExtract(
+                type=i['Type'],
+                frequency=i['Frequency'],
+                event_date=i['Event Date '],
+                due_data=i['Due Data'],
+                employee=i['Employee'],
+                employee_details=i['Employee Details'],
+                event_code=i['Event Code'],
+                action_perform=i['Action  to be performed'],
+                notification_controller=i['Notification Controller'],
+                notification_event=i['Notification Event'],
+                user_id=current_user.id,
+            )
+            db.session.add(data)
+            db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('home'))
+
+
+
+@app.route("/ourapi")
+def runapi():
+    return customapi()
+
