@@ -95,12 +95,12 @@
                                                 <th>Body</th>
                                                 <th>Date</th>
                                             </tr>
-                                            {% for notif in notif %}
+                                            {% for notif in notif|sort(attribute='date_time', reverse = True) %}
                                                 
                                                 <tr>
                                                     <td><a href = "{{ url_for('notification_history_id',notif_id=notif.id) }}">{{notif.type}}</a></td>
                                                     <td>{{notif.message_body}}</td>
-                                                    <td>{{notif.date_time}}</td>
+                                                    <td>{{notif.date_time.strftime('%Y-%m-%d %H:%M:%S')}}</td>
                                                 </tr>
                                                 
                                             {% endfor %}
